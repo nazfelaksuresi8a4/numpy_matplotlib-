@@ -1,0 +1,77 @@
+import wave
+import numpy as np
+import matplotlib.pyplot as plt
+
+#dosyayı okur [.waw olamak zorunda]
+file = wave.open(r"C:\Users\alper\Downloads\Among-us-sus-sound-effect.wav")
+
+def saniye_hesapla():
+    #getnframes built-in fonksiyonu ses dosyasındaki toplam frame[ses çerçevesi] sayısını döndürür
+    #getframerate ise her frame başına düşen örnek sayısını döndürür
+    time = file.getnframes() / file.getframerate() 
+
+    print(f'ses toplam {int(time)} saniye')
+
+    return time
+
+def kanal_bul():
+    #getchannels ses dosyasının kanalını bulur örn(stero/mono)
+
+    y = file.getchannels()
+
+    print(y)
+
+def byte_bul():
+    #getsampwidth() her ses örneğinin kaç byte oldugunu bulur
+
+    z = file.getsampwidth()
+
+    print(z)
+
+def frame_oku():
+    #readframes() ses dosyasındaki çerçeveleri döndürür
+    #ancak tek başına çalışamaz bir nframe verisine ihtiyaş duyar
+    #bunuda genelde getnframes() ile sağlarız
+
+    q = file.readframes(file.getnframes())
+
+    print(q) #0'lar sessizliği temsil eder
+
+    #kaba tabiri ile ses dosyasını yazıya çevirdik ve framelerini görebilimemizi sağladı 
+    #q bize byte veri türünü döndürür ve byte içindeki veriler int türündedir list comphersm yöntemi benzerinde
+    #bir yöntem ile veriler alınabilir
+
+    #ve ses içindeki frame sayılarının toplam byte sayısına bölünmesi ile oluşan bir veridir örn;
+    #q'nun len() ile uzunluğunu aldıktan sonra onu toplam byte sayısına (yani buda z oluyor) bölersek nframes'i elde ederiz
+
+    #NOT 1 byte = 8 bit
+
+
+    #arraye çevirmek için ise#
+
+    w = np.frombuffer(q,dtype=np.int16) #dtype int16 yani 16 bitlik int verisi
+
+    if(file.getnchannels() > 1): #eğerki ses dosyasının(file) toplam kanalı 1'den büyükse örn 2 ise q'yu byte türünden array'e çevir 
+        w = w.reshape(-1,2) #oluşturulan arrayı(w) -1(sütun(kolon)) 2(2'lik satırlarda) yeniden şekillendir ve #eski arrayı yeniden şekillendirilmiş array ile değiştir
+        print(w) #sonucu yazdır(w)
+
+        #ortalamasını almak için ise
+
+        meaned = w.mean(axis=-1) #-1(hepsinin ortalamasın al demek) ile array içindeki sağ ve sol satırlardaki verilerin ortalamaları alınır [0] / [1] şeklinde gider
+
+        print(meaned) #sonucu yazdır
+
+        #görselleştirmek isterseniz ise
+
+        sound_time = np.linspace(0,saniye_hesapla(),file.getnframes())  #linspace 0'dan başlar saniye_hesapla() fonksiyonunu çağırır daha sonrasında
+                                                                        #fonksiyonun döndürdüğü değeri stop verisi olarak algılar en sonundada kaç kaç ilerleyeceğini 
+                                                                        #belirlemek için getnframes() ile ses dosyasının tüm framleler'i olarak ayarlanır
+                                                                        #                       bu şu şekilde ilerler 
+                                                                        #                       start=0 , stop=saniye_hesapla()=time , num=file.getnframes()
+                                                                        #                       0               3                           int
+
+        plt.plot(sound_time,w,c='red',linewidth=0.5)
+        plt.xlabel('Süre(SANİYE)')   
+        plt.ylabel('Genlik(GÜRÜLTÜ)') #GÜRÜLTÜ = ham veri olan q(yani tüm byte'ları temsil eder)
+        plt.show()
+frame_oku()
