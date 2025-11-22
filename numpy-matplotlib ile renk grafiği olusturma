@@ -1,0 +1,58 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from time import sleep as sl
+import os as _o
+
+flag = False
+rgb = True
+
+class MainFunctions():
+    def __init__(self):
+        super().__init__()
+        self.nA = int(input('Width: '))
+        self.nB = int(input('Height: '))
+        self.vA = int(input('Value: '))
+        self.div = int(input('Divide Value: '))
+
+    def inp(self):
+        _o.system('cls')
+
+        flag = True
+        self.Plot(self.nA,self.nB,self.vA,self.div,flag)
+
+    def Plot(self,nAf,nBf,vAf,divf,flagF):
+        if flagF is not None:
+            if flagF != False:
+                if flagF == True:
+                    if rgb == True:
+                        array = np.array([[q for q in range((nBf // divf) * divf)]*nBf for i in range(nAf)])
+
+                    else:
+                        array = np.array([[vAf]*nBf for i in range(nAf)])
+
+                    if array is not None:
+                        print(array)
+
+                        sİ,sO = array.shape
+
+                        if sO >= 2:
+                            plt.imshow(array)
+
+                            plt.show()
+
+                        else:
+                            print(f'Shape is {sO,sİ} not supported!')
+
+    def ignit(self):
+        try:
+            self.inp()
+
+        except:
+            print('İnvalid input type! Please try again.')
+            sl(2)
+
+            self.inp()
+
+cls = MainFunctions()
+
+ignit = cls.ignit()
