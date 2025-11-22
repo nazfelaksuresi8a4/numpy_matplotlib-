@@ -1,0 +1,51 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+radius = 10
+
+def f(r):
+    array = np.array([0]*r,dtype=np.int16)
+
+    return array
+
+def array_method():
+    global arr
+    global array
+
+    arr = []
+    for rad in range(radius):
+        array = (f(radius))
+        arr.append(array)
+
+plt.style.use('dark_background')
+plt.axis('off')
+plt.grid(False)
+plt.set_cmap('gray')
+
+def main():
+    while True:
+        length = len(arr)
+
+        h = True
+        if h:
+            for j in range(1,len(arr)):
+                if length == 0:
+                    h = False
+
+                if j == len(arr) - 1:
+                    for k in range(len(arr)):
+                        length -= 1
+                        plt.imshow([arr[length]])
+                        plt.pause(0.5)
+
+                arr[j][j] = 1
+                plt.imshow([arr[j]])
+                plt.pause(0.5)
+        
+        else:
+            h = True
+            array_method()
+            main()
+
+array_method()
+main()
