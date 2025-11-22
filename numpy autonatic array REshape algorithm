@@ -1,0 +1,43 @@
+
+import random
+import numpy as _np
+
+list_1 = [random.randint(random.randint(0,10),random.randint(10,20)) for _ in range(774)]
+
+length = len(list_1) 
+
+if length %2 == 0:
+	number_squares = 0
+
+	while True:
+		number_squares += 1
+	
+		if number_squares + number_squares == length:
+			break
+		
+
+	reshaped_list = _np.reshape(list_1,(number_squares,2))			
+		
+else:
+	print("cube")
+	number_cube_zeros = 0
+	number_cube_ones = 1
+	
+	while True:
+		
+		number_cube_zeros += 1
+		number_cube_ones += 1
+			
+		if number_cube_zeros + number_cube_ones == length:
+			
+			reshaped_list = _np.reshape(list_1,(number_cube_ones+number_cube_zeros,1))
+			
+			break
+	
+print(reshaped_list)
+									
+									#21:20																		#ulan algoritma yazdim tek sayilari reshape edwmiyom diye tek sayi kadar elemana sahip listeyi simdi buda reshape edemiyor ya aga bende ayirdim tek cift diye tekleri ayri yapafaj ben bi caresine bakacam o kadar yazilimci olmusum
+
+																		#---------------------------											#22:07									
+#tamamdir yazdim ve kararli guzel sekilde calisiyo ve dogru cikti veriyo hehe																															
+																																							
