@@ -11,8 +11,8 @@ nm = 2
 
 """fonksiyon"""
 def f(x):       
-    x_array.append(1.1*x - 1 ** nm)     
-    y_array.append(1.1*x - 1 ** nm)
+    x_array.append(1.1*x ** nm - 1)     
+    y_array.append(1.1*x ** nm - 1)
 
 """sayılar(degerler)"""
 vals = [i for i in range(-10,15)]
