@@ -1,0 +1,29 @@
+#Alman bir matematikçi tarafından geliştirilen bu fonksiyon sadece onun bir varyantıdır bu fonksiyon temelinde türevlenemyen bir fonksiyon olduğu için adının sonuna "MOnster" yani canavar kelimesini koymuşlardır.
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sabit parametreler
+a = 0.5
+b = 5
+v = 100  # Terim sayısı
+x_vals = np.linspace(-2, 2, 1000)  # x için belirli bir aralık
+
+# Weierstrass fonksiyonu
+def g(x):
+    result = np.zeros_like(x)  # Başlangıçta sıfırlanmış bir dizi
+    for n in range(1, v+1):  # n terimi 1'den v'ye kadar döner
+        result += (a ** n) * np.cos(b**n * np.pi * x)
+    
+    return result
+
+# Fonksiyonu hesapla
+y_vals = g(x_vals)  # Fonksiyonun tüm değerlerini hesapla
+
+# Sonuçlar:
+plt.plot(x_vals, y_vals, color='black')
+plt.title("Weierstrass 'Monster' Function")
+plt.xlabel("x")
+plt.ylabel("g(x)")
+plt.grid(True)
+plt.show()
