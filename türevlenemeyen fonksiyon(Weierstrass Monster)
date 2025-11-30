@@ -27,3 +27,9 @@ plt.xlabel("x")
 plt.ylabel("g(x)")
 plt.grid(True)
 plt.show()
+
+"""
+TANIM:
+Weierstrass fonksiyonu, 19. yüzyılda Alman matematikçi Karl Weierstrass tarafından keşfedilen ve sürekli olduğu halde her noktada türevlenemeyen bir fonksiyondur. Bu fonksiyon, modern matematikte önemli bir yere sahiptir, çünkü sürekli ancak türevlenemeyen fonksiyonların varlığını kanıtlamıştır.
+"""
+#
