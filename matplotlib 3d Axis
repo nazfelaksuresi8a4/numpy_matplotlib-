@@ -1,0 +1,13 @@
+import matplotlib.pyplot as plt
+import matplotlib.pylab as pylab
+import numpy as np
+
+ax = plt.subplot(projection="3d")
+
+array = [q for q in range(360)]
+
+for deg in array:
+    array[array.index(deg)] = pylab.sin(deg)
+
+ax.plot(np.arange(len(array)),np.array(array))
+plt.show()
