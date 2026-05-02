@@ -1,0 +1,5 @@
+np.diagonlar(arr) -> arr[0,0] , arr[1,1] , arr[2,2] .... , arr[i,j] -> 1D NumPy Vector
+  şeklinde çapraz elemanları almak için kullanılır
+
+np.trace -> matrisin köşegenini alır yani yukarıdaki diagonal işleminden çıkan vektörü vektör olarak vermek yerine sum(diag) şeklinde verir yani
+  arr[0,0] + arr[1,1] + arr[2,2] .... +  arr[i,j] -> 1D NumPy Vector
