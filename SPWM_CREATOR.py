@@ -1,26 +1,25 @@
 import matplotlib.pyplot as plt 
 import numpy as np 
 
-
-sampling = 10000       
-time = 0.04           
+sampling = 10000       #örnekleme hizi
+time = 0.04           #zaman
 
 A_ = 1
-f_sin = 100            
-f_tri = 500   
+f_sin = 100            #sinüs dalgasının frekansı
+f_tri = 500            #üçgen dalganın frekansı
 
-phi_ = 1               
+phi_ = 1               #faz açısı
 
-t_ = np.arange(0, time, 1/sampling)
+t_ = np.arange(0, time, 1/sampling)    #zaman dizisi ve 1 / sampling adım
 
 def Vtri(t,f,A):
-    return ((2*A) / np.pi) * np.arcsin(np.sin(2*np.pi*f*t))
+    return ((2*A) / np.pi) * np.arcsin(np.sin(2*np.pi*f*t))        #taışıyıcı dalga
 
 def Vsin(t,f,A,phi):
-    return A * np.sin((2*np.pi*f*t) + phi)
+    return A * np.sin((2*np.pi*f*t) + phi)                          #sinusiodal dalga
 
 def Pwm(t,Vsinusoidal_,Vtringular_):
-    pwm = np.where(Vsinusoidal_>Vtringular_,1,0)
+    pwm = np.where(Vsinusoidal_>Vtringular_,1,0)                    #iki dalganın karşılaştırılması sonucunda oluşan PWM sinyali (SPWM denir)
 
     return pwm
 
